@@ -68,10 +68,6 @@ trader-en-formacion/
 
 ## Uso de la Aplicación
 
-### Credenciales de Administrador
-- **Email**: admin@trader.com
-- **Contraseña**: admin123_
-
 ### Funcionalidades del Administrador
 
 1. **Gestión de Usuarios**:
