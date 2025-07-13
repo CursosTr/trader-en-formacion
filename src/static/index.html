@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trader en Formación</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="page active">
+        <div class="background-gradient">
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="logo">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h1>Trader en Formación</h1>
+                    <p class="subtitle">Inicia sesión para acceder a tus cursos y libros de trading</p>
+                    
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="loginEmail" placeholder="Introduce tu correo" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Iniciar Sesión</button>
+                    </form>
+                    
+                    <p class="register-link">
+                        ¿No tienes una cuenta? <a href="#" onclick="showRegister()">Regístrate aquí</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="page">
+        <div class="background-gradient">
+            <div class="login-container">
+                <div class="login-card">
+                    <div class="logo">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h1>Crear Cuenta</h1>
+                    <p class="subtitle">Regístrate para acceder a los cursos y libros de trading</p>
+                    
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="registerName">Nombre completo</label>
+                            <div class="input-group">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="registerName" placeholder="Tu nombre completo" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerEmail">Email</label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="registerEmail" placeholder="tu@email.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerPassword">Contraseña</label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="registerPassword" placeholder="••••••••" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="registerCode">Código de registro</label>
+                            <div class="input-group">
+                                <i class="fas fa-key"></i>
+                                <input type="text" id="registerCode" placeholder="Código proporcionado por el administrador" required>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Crear Cuenta</button>
+                    </form>
+                    
+                    <p class="register-link">
+                        ¿Ya tienes una cuenta? <a href="#" onclick="showLogin()">Inicia sesión aquí</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Dashboard -->
+    <div id="userDashboard" class="page">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-header">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Trader en Formación</span>
+                </div>
+                <div class="user-info">
+                    <span id="userName">Bienvenido, Usuario</span>
+                    <button onclick="logout()" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-nav">
+            <button class="nav-btn active" onclick="showSection('courses')">
+                <i class="fas fa-graduation-cap"></i>
+                Cursos
+            </button>
+            <button class="nav-btn" onclick="showSection('books')">
+                <i class="fas fa-book"></i>
+                Libros
+            </button>
+        </div>
+
+        <main class="main-content">
+            <div id="coursesSection" class="content-section active">
+                <h2>Cursos de Trading</h2>
+                <p class="section-subtitle">Explora nuestros cursos especializados en trading y análisis financiero</p>
+                <div id="coursesList" class="items-grid">
+                    <!-- Courses will be loaded here -->
+                </div>
+            </div>
+
+            <div id="booksSection" class="content-section">
+                <h2>Libros de Trading</h2>
+                <p class="section-subtitle">Accede a nuestra biblioteca de libros especializados</p>
+                <div id="booksList" class="items-grid">
+                    <!-- Books will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="page">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-header">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Panel de Administración</span>
+                    <span class="admin-badge">Admin: Administrador</span>
+                </div>
+                <div class="user-info">
+                    <span>Administrador</span>
+                    <button onclick="logout()" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-nav">
+            <button class="nav-btn active" onclick="showAdminSection('users')">
+                <i class="fas fa-users"></i>
+                Usuarios
+            </button>
+            <button class="nav-btn" onclick="showAdminSection('courses')">
+                <i class="fas fa-graduation-cap"></i>
+                Cursos
+            </button>
+            <button class="nav-btn" onclick="showAdminSection('books')">
+                <i class="fas fa-book"></i>
+                Libros
+            </button>
+            <button class="nav-btn" onclick="showAdminSection('codes')">
+                <i class="fas fa-key"></i>
+                Claves
+            </button>
+        </div>
+
+        <main class="main-content">
+            <!-- Users Section -->
+            <div id="adminUsersSection" class="content-section active">
+                <h2>Gestión de Usuarios</h2>
+                <p class="section-subtitle">Administra los usuarios registrados en la plataforma</p>
+                <div class="admin-content">
+                    <div id="usersList" class="users-list">
+                        <!-- Users will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Courses Section -->
+            <div id="adminCoursesSection" class="content-section">
+                <h2>Gestión de Cursos</h2>
+                <div class="admin-content">
+                    <div class="add-form">
+                        <h3>Añadir Curso</h3>
+                        <form id="addCourseForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="courseName">Nombre del curso</label>
+                                    <input type="text" id="courseName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="courseLink">Enlace</label>
+                                    <input type="url" id="courseLink" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="courseImage">URL de imagen (opcional)</label>
+                                <input type="url" id="courseImage">
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Añadir Curso
+                            </button>
+                        </form>
+                    </div>
+                    <div class="existing-items">
+                        <h3>Cursos Existentes</h3>
+                        <div id="adminCoursesList" class="admin-items-list">
+                            <!-- Admin courses will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Books Section -->
+            <div id="adminBooksSection" class="content-section">
+                <h2>Gestión de Libros</h2>
+                <div class="admin-content">
+                    <div class="add-form">
+                        <h3>Añadir Libro</h3>
+                        <form id="addBookForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bookName">Nombre del libro</label>
+                                    <input type="text" id="bookName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookLink">Enlace</label>
+                                    <input type="url" id="bookLink" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookImage">URL de imagen (opcional)</label>
+                                <input type="url" id="bookImage">
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Añadir Libro
+                            </button>
+                        </form>
+                    </div>
+                    <div class="existing-items">
+                        <h3>Libros Existentes</h3>
+                        <div id="adminBooksList" class="admin-items-list">
+                            <!-- Admin books will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Codes Section -->
+            <div id="adminCodesSection" class="content-section">
+                <h2>Generador de Claves de Registro</h2>
+                <p class="section-subtitle">Genera claves únicas para permitir el registro de nuevos usuarios</p>
+                <div class="admin-content">
+                    <div class="code-generator">
+                        <button onclick="generateCode()" class="btn-primary">
+                            <i class="fas fa-key"></i>
+                            Generar Nueva Clave
+                        </button>
+                    </div>
+                    <div class="codes-list">
+                        <h3>Claves Generadas</h3>
+                        <div id="codesList" class="codes-grid">
+                            <!-- Codes will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
